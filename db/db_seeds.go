@@ -7,6 +7,7 @@ import (
     _ "github.com/lib/pq"
     "strconv"
     "math/rand"
+    "gopkg.in/cheggaaa/pb.v1"
 )
 
 func main() {
@@ -33,22 +34,31 @@ func checkErr(err error) {
 
 func generateUsers(db *sql.DB) {
     fmt.Println("[USERS] starts")
-    for i := 0; i < 100; i++ {
+    count := 10000
+    bar := pb.StartNew(count)
+    for i := 0; i < 10000; i++ {
         insertUserData(i, db)
+        bar.Increment()
     }
+    bar.FinishPrint("The End!")
     fmt.Println("[USERS] done")
 }
 
 func generatePosts(db *sql.DB) {
-    fmt.Println("[POST] starts")
-    for i := 0; i < 100; i++ {
+    fmt.Println("[POSTS] starts")
+    count := 10
+    bar := pb.StartNew(count)
+    bar.ShowCounters = true
+    for i := 0; i < count; i++ {
         smallPostGeneration(db)
+        bar.Increment()
     }
-    fmt.Println("[POST] done")
+    bar.FinishPrint("The End!")
+    fmt.Println("[POSTS] done")
 }
 
 func smallPostGeneration(db *sql.DB) {
-    for i := 0; i < 1000; i++ {
+    for i := 0; i < 10000; i++ {
         insertPostData(i, db)
     }
 }
@@ -58,7 +68,6 @@ func insertUserData(i int, db *sql.DB) {
     var id int
     err := db.QueryRow("INSERT INTO users(email, name, created_at, updated_at) VALUES($1, $2, NOW(), NOW()) returning id;", email, name).Scan(&id)
     checkErr(err)
-    fmt.Println("[USERS] Inserted: ", id)
 }
 
 func insertPostData(i int, db *sql.DB) {
@@ -72,5 +81,4 @@ func insertPostData(i int, db *sql.DB) {
     var id int
     err := db.QueryRow("INSERT INTO posts(title, body, user_id, created_at, updated_at) VALUES($1, $2, $3, NOW(), NOW()) returning id;", title, body, user_id).Scan(&id)
     checkErr(err)
-    fmt.Println("[POST] Inserted: ", id)
 }

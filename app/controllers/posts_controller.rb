@@ -1,16 +1,27 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
+  caches_page :some_static
+  caches_action :show
+
   # GET /posts
   # GET /posts.json
   def index
-    # @posts = Post.limit(100)
-    @posts = Post.includes(:post).limit(100)
+    @posts = Post.includes(:user).limit(100)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    # fresh_when @product
+    if stale?(last_modified: @post.updated_at.utc, etag: @post.cache_key)
+      respond_to do |format|
+        format.html
+      end
+    end
+  end
+
+  def some_static
   end
 
   # GET /posts/new
@@ -43,6 +54,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
+        expire_action action: "show", id: @post.id
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else

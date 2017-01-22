@@ -1,3 +1,17 @@
+GIT
+  remote: git://github.com/rails/actionpack-action_caching.git
+  revision: d73dd50dcaa2fbf01a947588fd02e8c37fbead2c
+  specs:
+    actionpack-action_caching (1.2.0)
+      actionpack (>= 4.0.0, < 6)
+
+GIT
+  remote: git://github.com/rails/actionpack-page_caching.git
+  revision: cfcb9521168a82741f6af9e07ebc6dac153224fc
+  specs:
+    actionpack-page_caching (1.1.0)
+      actionpack (>= 4.0.0, < 6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -161,6 +175,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack-action_caching!
+  actionpack-page_caching!
   allocation_tracer
   byebug
   coffee-rails (~> 4.2)

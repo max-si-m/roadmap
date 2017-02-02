@@ -11,3 +11,5 @@ irb(main):006:0> User.count
    (32.0ms)  SELECT COUNT(*) FROM "users"
 => 34445
 ~~~
+
+Add some profiling

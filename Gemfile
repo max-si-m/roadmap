@@ -53,7 +53,8 @@ group :development do
 end
 
 gem 'ffaker'
-
+gem 'actionpack-page_caching', github: 'rails/actionpack-page_caching'
+gem 'actionpack-action_caching', github: 'rails/actionpack-action_caching'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

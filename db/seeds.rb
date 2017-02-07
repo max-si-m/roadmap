@@ -17,3 +17,12 @@ puts 'Users generated'
     user_id: rand(1...100))
 end
 puts 'Posts generated'
+
+1000.times do |n|
+  Comment.create(
+    title: "Comment # #{n}",
+    body: FFaker::Tweet.body,
+    user_id: rand(1...100),
+    post_id: rand(1...100))
+end
+puts 'Comments generated'

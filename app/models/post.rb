@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
-  belongs_to :user
+  include Contentable
+
   has_many :comments
 end

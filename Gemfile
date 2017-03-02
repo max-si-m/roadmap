@@ -50,6 +50,11 @@ group :development do
   gem 'flamegraph'
   gem 'stackprof'     # For Ruby MRI 2.1+
   gem 'allocation_tracer'
+
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rvm', require: false
 end
 
 gem 'ffaker'

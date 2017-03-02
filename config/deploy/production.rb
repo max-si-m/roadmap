@@ -31,7 +31,6 @@ role :db,  %w{deployer@163.172.145.45}
 
 set :rails_env, :production
 
-
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a
@@ -41,7 +40,7 @@ set :rails_env, :production
 # Global options
 # --------------
 set :ssh_options, {
- keys: %w(/Users/max-si-m/.ssh/id_rsa),
+ keys: %w(~/.ssh/id_rsa),
  forward_agent: true,
  auth_methods: %w(publickey password),
  port: 22190

@@ -8,6 +8,6 @@ set :branch, "master"
 set :deploy_to, "/home/deployer/roadmap"
 set :user, 'deployer'
 
-append :linked_files, "config/database.yml", "config/secrets.yml", '.env'
+append :linked_files, "config/database.yml", '.env'
 
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"

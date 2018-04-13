@@ -84,4 +84,8 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :body, :user_id)
     end
+
+    def repo
+      @repo ||= PostRepository.new
+    end
 end

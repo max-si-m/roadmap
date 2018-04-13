@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'dotenv'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -50,7 +52,18 @@ group :development do
   gem 'flamegraph'
   gem 'stackprof'     # For Ruby MRI 2.1+
   gem 'allocation_tracer'
+
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano3-puma',   require: false
+  # gem 'capistrano3-unicorn', require: false
 end
+
+# group :production do
+#   gem 'unicorn'
+# end
 
 gem 'ffaker'
 gem 'actionpack-page_caching', github: 'rails/actionpack-page_caching'

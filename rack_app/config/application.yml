@@ -1,0 +1,5 @@
+development:
+  server: webrick
+
+staging:
+  server: thin
